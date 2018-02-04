@@ -1,0 +1,72 @@
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Include the following lines in your makefile:
+        -:    3: *
+        -:    4: * testUpdateCoins: testUpdateCoins.c dominion.o rngs.o
+        -:    5: *      gcc -o testUpdateCoins -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:// set NOISY_TEST to 0 to remove printfs from output
+        -:   17:#define NOISY_TEST 1
+        -:   18:
+function main called 1 returned 100% blocks executed 100%
+        1:   19:int main() {
+        -:   20:    int i;
+        -:   21:	int j;
+        1:   22:    int seed = 1000;
+        1:   23:    int numPlayer = 2;
+        1:   24:    int maxBonus = 10;
+        -:   25:    int p, r, handCount;
+        -:   26:    int bonus;
+        1:   27:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   28:               , remodel, smithy, village, baron, great_hall};
+        -:   29:    struct gameState G;
+        1:   30:    int maxHandCount = 5;
+        -:   31:    // arrays of all coppers, silvers, and golds
+        -:   32:    int coppers[MAX_HAND];
+        -:   33:    int silvers[MAX_HAND];
+        -:   34:    int golds[MAX_HAND];
+      501:   35:    for (i = 0; i < MAX_HAND; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   36:    {
+      500:   37:        coppers[i] = copper;
+      500:   38:        silvers[i] = silver;
+      500:   39:        golds[i] = gold;
+        -:   40:    }
+        -:   41:
+        1:   42:    printf ("cardtest1 - TESTING Smithy:\n");
+call    0 returned 100%
+        1:   43:    p = 0;
+        1:   44:	printf("Setting up game...\n");
+call    0 returned 100%
+        1:   45:	memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        1:   46:	r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+call    0 returned 100%
+        -:   47:    //G.handCount[p] = handCount;                 // set the number of cards on hand
+        1:   48:	G.hand[p][0] = smithy;
+        -:   49:
+        -:   50:	//playCard(0, 0, 0, 0, &G);
+        -:   51:	
+        -:   52:#if (NOISY_TEST == 1)
+        1:   53:	printf("Played Smithy. Handcount = %d, expected = 6\n", G.handCount[p]);
+call    0 returned 100%
+        -:   54:#endif
+        -:   55:	
+        1:   56:    printf("All tests passed!\n");
+call    0 returned 100%
+        -:   57:	
+        1:   58:    return 0;
+        -:   59:}
