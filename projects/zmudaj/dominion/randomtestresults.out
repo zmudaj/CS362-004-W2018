@@ -1,0 +1,33 @@
+randomtestadventurer.c:
+Running random tests for Adventurer
+Done testing Adventurer!
+1000 passed and 0 failed of 1000 tests
+File 'dominion.c'
+Lines executed:24.64% of 548
+Branches executed:25.66% of 417
+Taken at least once:18.23% of 417
+Calls executed:12.22% of 90
+Creating 'dominion.c.gcov'
+
+randomtestcard1.c:
+Running random tests for Smithy
+Done testing Smithy!
+1000 passed and 0 failed of 1000 tests
+File 'dominion.c'
+Lines executed:24.09% of 548
+Branches executed:24.70% of 417
+Taken at least once:16.79% of 417
+Calls executed:12.22% of 90
+Creating 'dominion.c.gcov'
+
+randomtestcard2.c:
+Running random tests for Great Hall
+Done testing Great Hall!
+0 passed and 1000 failed of 1000 tests
+File 'dominion.c'
+Lines executed:24.09% of 548
+Branches executed:24.22% of 417
+Taken at least once:16.31% of 417
+Calls executed:12.22% of 90
+Creating 'dominion.c.gcov'
+
