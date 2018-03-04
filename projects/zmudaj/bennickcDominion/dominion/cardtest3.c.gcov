@@ -1,0 +1,102 @@
+        -:    0:Source:cardtest3.c
+        -:    0:Graph:cardtest3.gcno
+        -:    0:Data:cardtest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Cardtest3 - Great Hall
+        -:    3: * -----------------------------------------------------------------------
+        -:    4: */
+        -:    5:
+        -:    6:#include "dominion.h"
+        -:    7:#include "dominion_helpers.h"
+        -:    8:#include <string.h>
+        -:    9:#include <stdio.h>
+        -:   10:#include <assert.h>
+        -:   11:#include "rngs.h"
+        -:   12:
+        -:   13:// set NOISY_TEST to 0 to remove printfs from output
+        -:   14:#define NOISY_TEST 1
+        -:   15:
+function main called 1 returned 100% blocks executed 100%
+        1:   16:int main() {
+        -:   17:    int i;
+        -:   18:	int j;
+        1:   19:    int seed = 1000;
+        1:   20:    int numPlayer = 2;
+        1:   21:    int maxBonus = 10;
+        -:   22:    int p, r, handCount;
+        -:   23:    int bonus;
+        1:   24:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   25:               , remodel, smithy, village, baron, great_hall};
+        -:   26:    struct gameState G;
+        1:   27:    int maxHandCount = 5;
+        -:   28:    // arrays of all coppers, silvers, and golds
+        -:   29:    int coppers[MAX_HAND];
+        -:   30:    int silvers[MAX_HAND];
+        -:   31:    int golds[MAX_HAND];
+      501:   32:    for (i = 0; i < MAX_HAND; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   33:    {
+      500:   34:        coppers[i] = copper;
+      500:   35:        silvers[i] = silver;
+      500:   36:        golds[i] = gold;
+        -:   37:    }
+        -:   38:
+        -:   39:	int GreatHallEffect(int handPos, struct gameState *state)
+        -:   40:	{
+        -:   41:		int i;
+        -:   42:		int j;
+        -:   43:		int k;
+        -:   44:		int x;
+        -:   45:		int index;
+        -:   46:		int currentPlayer = whoseTurn(state);
+        -:   47:		int nextPlayer = currentPlayer + 1;
+        -:   48:
+        -:   49:		int cardDrawn;
+        -:   50:		int z = 0;// this is the counter for the temp hand
+        -:   51:		if (nextPlayer > (state->numPlayers - 1))
+        -:   52:		{
+        -:   53:			nextPlayer = 0;
+        -:   54:		}
+        -:   55:		//+1 Card
+        -:   56:		drawCard(currentPlayer, state);
+        -:   57:
+        -:   58:		//+1 Actions
+        -:   59:		state->numActions--;
+        -:   60:
+        -:   61:		//discard card from hand
+        -:   62:		discardCard(handPos, currentPlayer, state, 0);
+        -:   63:		return 0;
+        -:   64:	}
+        -:   65:
+        -:   66:	int actions;
+        -:   67:
+        1:   68:    printf ("cardtest3 - TESTING Great Hall:\n");
+call    0 returned 100%
+        1:   69:    p = 0;
+        1:   70:	printf("Setting up game...\n");
+call    0 returned 100%
+        1:   71:	memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        1:   72:	r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+call    0 returned 100%
+        -:   73:    //G.handCount[p] = handCount;                 // set the number of cards on hand
+        1:   74:	G.hand[p][0] = great_hall;
+        1:   75:	actions = -1;
+        -:   76:	//playCard(0, 0, 0, 0, &G);
+        -:   77:	
+        -:   78:#if (NOISY_TEST == 1)
+        1:   79:	printf("Great hall should leave hand and action counts at the same number they started.\n");
+call    0 returned 100%
+        1:   80:	printf("Handcount = %d, expected = 5\n", G.handCount[p]);
+call    0 returned 100%
+        1:   81:	printf("Actions = %d, expected = 1\n", actions);
+call    0 returned 100%
+        -:   82:#endif
+        -:   83:	
+        1:   84:    printf("All tests passed!\n");
+call    0 returned 100%
+        -:   85:	
+        1:   86:    return 0;
+        -:   87:}

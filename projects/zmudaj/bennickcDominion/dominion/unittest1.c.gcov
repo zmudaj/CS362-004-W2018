@@ -1,0 +1,116 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Include the following lines in your makefile:
+        -:    3: *
+        -:    4: * testUpdateCoins: testUpdateCoins.c dominion.o rngs.o
+        -:    5: *      gcc -o testUpdateCoins -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:// set NOISY_TEST to 0 to remove printfs from output
+        -:   17:#define NOISY_TEST 1
+        -:   18:
+function main called 1 returned 100% blocks executed 100%
+        1:   19:int main() {
+        -:   20:    int i;
+        -:   21:	int j;
+        1:   22:    int seed = 1000;
+        1:   23:    int numPlayer = 2;
+        1:   24:    int maxBonus = 10;
+        -:   25:    int p, r, handCount;
+        -:   26:    int bonus;
+        1:   27:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   28:               , remodel, smithy, village, baron, great_hall};
+        -:   29:    struct gameState G;
+        1:   30:    int maxHandCount = 5;
+        -:   31:    // arrays of all coppers, silvers, and golds
+        -:   32:    int coppers[MAX_HAND];
+        -:   33:    int silvers[MAX_HAND];
+        -:   34:    int golds[MAX_HAND];
+      501:   35:    for (i = 0; i < MAX_HAND; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   36:    {
+      500:   37:        coppers[i] = copper;
+      500:   38:        silvers[i] = silver;
+      500:   39:        golds[i] = gold;
+        -:   40:    }
+        -:   41:
+        1:   42:    printf ("unittest1 - TESTING shuffle():\n");
+call    0 returned 100%
+        1:   43:    p = 0;
+        1:   44:	printf("Setting up game...\n");
+call    0 returned 100%
+        1:   45:	memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        1:   46:	r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+call    0 returned 100%
+        1:   47:    G.handCount[p] = handCount;                 // set the number of cards on hand
+        -:   48:	//Copy deck one into a new deck
+        1:   49:	printf("Creating copy of the first deck...\n");
+call    0 returned 100%
+        6:   50:	for (i = 0; i < G.deckCount[0]; i++)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+        -:   51:	{
+        5:   52:		G.deck[2][i] = G.deck[0][i];
+        -:   53:	}
+        -:   54:	// Shuffle the first deck
+        1:   55:	printf("Shuffling first deck\n");
+call    0 returned 100%
+        1:   56:	shuffle(0, &G);
+call    0 returned 100%
+        -:   57:	//printf("deck count: %d", G.deckCount[0]);
+        -:   58:	// check that the decks are different
+        1:   59:	printf("Comparing decks to see how many cards where in the same place\n");
+call    0 returned 100%
+        -:   60:	int sameCardCount;
+        6:   61:	for (i = 0; i < G.deckCount[0]; i++)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+        -:   62:	{
+        -:   63:		//printf("Deck 1 has %d, deck 2 has %d\n", G.deck[0][i], G.deck[2][i]);
+        5:   64:		if (G.deck[2][i] == G.deck[0][i])
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   65:		{
+        5:   66:			sameCardCount++;
+        -:   67:		}
+        -:   68:	}
+        -:   69:#if (NOISY_TEST == 1)
+        1:   70:    printf("The decks had %d cards in the same place\n", sameCardCount);
+call    0 returned 100%
+        -:   71:#endif
+        -:   72:                /*assert(G.coins == handCount * 1 + bonus); // check if the number of coins is correct
+        -:   73:
+        -:   74:                memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
+        -:   75:                updateCoins(p, &G, bonus);
+        -:   76:#if (NOISY_TEST == 1)
+        -:   77:                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
+        -:   78:#endif
+        -:   79:                assert(G.coins == handCount * 2 + bonus); // check if the number of coins is correct
+        -:   80:
+        -:   81:                memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
+        -:   82:                updateCoins(p, &G, bonus);
+        -:   83:#if (NOISY_TEST == 1)
+        -:   84:                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+        -:   85:#endif
+        -:   86:                assert(G.coins == handCount * 3 + bonus); // check if the number of coins is correct
+        -:   87:				*/
+        -:   88:            //}
+        -:   89:
+        1:   90:    printf("All tests passed!\n");
+call    0 returned 100%
+        -:   91:	
+        1:   92:    return 0;
+        -:   93:}

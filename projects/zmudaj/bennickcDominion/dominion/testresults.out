@@ -1,0 +1,141 @@
+randomtestadventurer.c:
+Running random tests for Adventurer
+Done testing Adventurer!
+1000 passed and 0 failed of 1000 tests
+File 'dominion.c'
+Lines executed:24.64% of 548
+Branches executed:25.66% of 417
+Taken at least once:18.23% of 417
+Calls executed:12.22% of 90
+Creating 'dominion.c.gcov'
+
+randomtestcard1.c:
+Running random tests for Smithy
+Done testing Smithy!
+0 passed and 1000 failed of 1000 tests
+File 'dominion.c'
+Lines executed:24.09% of 548
+Branches executed:24.70% of 417
+Taken at least once:16.79% of 417
+Calls executed:12.22% of 90
+Creating 'dominion.c.gcov'
+
+randomtestcard2.c:
+Running random tests for Great Hall
+Done testing Great Hall!
+0 passed and 1000 failed of 1000 tests
+File 'dominion.c'
+Lines executed:24.09% of 548
+Branches executed:24.22% of 417
+Taken at least once:16.31% of 417
+Calls executed:12.22% of 90
+Creating 'dominion.c.gcov'
+
+unittest1.c:
+unittest1 - TESTING shuffle():
+Setting up game...
+Creating copy of the first deck...
+Shuffling first deck
+Comparing decks to see how many cards where in the same place
+The decks had 5 cards in the same place
+All tests passed!
+File 'unittest1.c'
+Lines executed:100.00% of 28
+Branches executed:100.00% of 8
+Taken at least once:87.50% of 8
+Calls executed:100.00% of 9
+Creating 'unittest1.c.gcov'
+
+unittest2.c:
+unittest2 - TESTING fullDeckCount():
+Setting up game...
+copperCount = 7, expected = 7
+curseCount = 0, expected = 0
+estateCount = 3, expected = 3
+All tests passed!
+File 'unittest2.c'
+Lines executed:100.00% of 27
+Branches executed:100.00% of 8
+Taken at least once:62.50% of 8
+Calls executed:76.92% of 13
+Creating 'unittest2.c.gcov'
+
+unittest3.c:
+unittest3 - TESTING isGameOver():
+Setting up game...
+Game in default state. isGameOver = 0, expected = 0
+All tests passed!
+File 'unittest3.c'
+Lines executed:100.00% of 20
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 6
+Creating 'unittest3.c.gcov'
+
+unittest4.c:
+unittest3 - TESTING isGameOver():
+Setting up game...
+2 Player game. supply of provinces = 8, expected = 8
+Supply of Adventureres = 10, expected = 10
+Sea Hag is not in the game. supply of Sea Hag = -1, expected = -1
+All tests passed!
+File 'unittest4.c'
+Lines executed:100.00% of 24
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 10
+Creating 'unittest4.c.gcov'
+
+cardtest1.c:
+cardtest1 - TESTING Smithy:
+Setting up game...
+Played Smithy. Handcount = 5, expected = 6
+All tests passed!
+File 'cardtest1.c'
+Lines executed:100.00% of 19
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 5
+Creating 'cardtest1.c.gcov'
+
+cardtest2.c:
+cardtest2 - TESTING Adventurer:
+Setting up game...
+Played Adventurer. Handcount = 5, expected = 5
+Treasure cards left in deck = 3, expected = 3
+All tests passed!
+File 'cardtest2.c'
+Lines executed:100.00% of 20
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 6
+Creating 'cardtest2.c.gcov'
+
+cardtest3.c:
+cardtest3 - TESTING Great Hall:
+Setting up game...
+Great hall should leave hand and action counts at the same number they started.
+Handcount = 5, expected = 5
+Actions = -1, expected = 1
+All tests passed!
+File 'cardtest3.c'
+Lines executed:100.00% of 22
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 7
+Creating 'cardtest3.c.gcov'
+
+cardtest4.c:
+cardtest4 - TESTING Sea Hag:
+Setting up game...
+Oppenents top card should be a curse. Test starts in initial game state so player's top of deck should not.
+Oponents top of deck is curse = 0, expected = 1
+Players top of deck is not curse = 1, expected = 0
+All tests passed!
+File 'cardtest4.c'
+Lines executed:100.00% of 23
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 7
+Creating 'cardtest4.c.gcov'
+

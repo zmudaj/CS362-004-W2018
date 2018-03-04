@@ -1,0 +1,99 @@
+Jason Zmuda 			CS 362 Software Engineering II				Assignment 5: Bug reports
+==============================
+
+Title: 		Error when running adventurerFunc() from dominion.c 
+
+Class: 		Serious Bug – Broken game logic
+
+Date:      	3/4/18     
+Reported By:   Jason Zmuda
+Email:      	zmudaj@oregonstate.edu
+
+
+Is it reproducible: Yes 
+
+Description
+===========
+The adventurerFunc() is supposed to search the current player’s deck until it finds two treasure cards, then put these cards into their hand and discard the rest. However, instead of running until two treasure cards are found it is running until three treasure cards are found.
+
+
+Steps to Produce/Reproduce
+--------------------------
+-	Set up a default game state
+-	Check the hand count and number of treasure cards in hand
+-	Call adventurerFunc()
+-	Print adjusted hand count and content
+
+
+Expected Results
+----------------
+
+-	Hand count should be one higher than before adventurerFunc() was played
+-	Hand should have two more treasure cards than before adventuruerFunc()
+
+Actual Results
+--------------
+
+-	Hand count is two higher than before adventurerFunc() was played
+-	Hand has three more treasure cards than before adventurerFunc()
+
+Workarounds
+-----------
+
+-	There are currently no work arounds. The error does not cause a crash or create any other errors
+
+
+Other Information
+-----------------
+Error seems to occur in dominion.c, line 1172. Code loops until ‘drawnTreasure’ is 3 (3 times) when it should only loop two times.
+
+
+
+==============================
+
+Title: 		Error when running smithyFunc() from dominion.c 
+
+Class: 		Serious Bug – Broken game logic
+
+Date:      	3/4/18     
+Reported By:   Jason Zmuda
+Email:      	zmudaj@oregonstate.edu
+
+
+Is it reproducible: Yes 
+
+Description
+===========
+The smithyFunc() is supposed to have the active player draw three cards, but it only has them draw two.
+
+
+Steps to Produce/Reproduce
+--------------------------
+-	Set up a default game state
+-	Check the hand count for the active player
+-	Call smithyFunc()
+-	Print adjusted hand count
+
+
+Expected Results
+----------------
+
+-	Hand count should be two higher than before smithyFunc() was played
+(three cards drawn, then smithy card discarded)
+
+Actual Results
+--------------
+
+-	Hand count is one higher than before smithyFunc() was played
+(two cards drawn, then smithy discarded)
+
+Workarounds
+-----------
+
+-	There are currently no work arounds. The error does not cause a crash or create any other errors
+
+
+Other Information
+-----------------
+Error seems to occur in dominion.c, line 1218. Code loops two times when it should be looping three times.
+

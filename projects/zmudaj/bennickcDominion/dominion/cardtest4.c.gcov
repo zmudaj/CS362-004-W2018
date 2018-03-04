@@ -1,0 +1,95 @@
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Cardtest4 - Sea Hag
+        -:    3: * -----------------------------------------------------------------------
+        -:    4: */
+        -:    5:
+        -:    6:#include "dominion.h"
+        -:    7:#include "dominion_helpers.h"
+        -:    8:#include <string.h>
+        -:    9:#include <stdio.h>
+        -:   10:#include <assert.h>
+        -:   11:#include "rngs.h"
+        -:   12:
+        -:   13:// set NOISY_TEST to 0 to remove printfs from output
+        -:   14:#define NOISY_TEST 1
+        -:   15:
+function main called 1 returned 100% blocks executed 100%
+        1:   16:int main() {
+        -:   17:    int i;
+        -:   18:	int j;
+        1:   19:    int seed = 1000;
+        1:   20:    int numPlayer = 2;
+        1:   21:    int maxBonus = 10;
+        -:   22:    int p, r, handCount;
+        -:   23:    int bonus;
+        1:   24:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   25:               , remodel, smithy, village, baron, great_hall};
+        -:   26:    struct gameState G;
+        1:   27:    int maxHandCount = 5;
+        -:   28:    // arrays of all coppers, silvers, and golds
+        -:   29:    int coppers[MAX_HAND];
+        -:   30:    int silvers[MAX_HAND];
+        -:   31:    int golds[MAX_HAND];
+      501:   32:    for (i = 0; i < MAX_HAND; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   33:    {
+      500:   34:        coppers[i] = copper;
+      500:   35:        silvers[i] = silver;
+      500:   36:        golds[i] = gold;
+        -:   37:    }
+        -:   38:	int opponentTopOfDeck;
+        -:   39:	int playerTopOfDeck;
+        -:   40:	int SeaHagEffect(struct gameState *state)
+        -:   41:	{
+        -:   42:		int i;
+        -:   43:		int currentPlayer = whoseTurn(state);
+        -:   44:		int nextPlayer = currentPlayer + 1;
+        -:   45:
+        -:   46:		if (nextPlayer > (state->numPlayers - 1)) {
+        -:   47:			nextPlayer = 0;
+        -:   48:		}
+        -:   49:		for (i = 0; i < state->numPlayers; i++) {
+        -:   50:			if (i == currentPlayer) {
+        -:   51:				state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
+        -:   52:				state->discardCount[i]++;
+        -:   53:				state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
+        -:   54:			}
+        -:   55:		}
+        -:   56:		return 0;
+        -:   57:	}
+        1:   58:	opponentTopOfDeck = 0;
+        1:   59:	playerTopOfDeck = 1;
+        -:   60:
+        1:   61:    printf ("cardtest4 - TESTING Sea Hag:\n");
+call    0 returned 100%
+        1:   62:    p = 0;
+        1:   63:	printf("Setting up game...\n");
+call    0 returned 100%
+        1:   64:	memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        1:   65:	r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+call    0 returned 100%
+        -:   66:    //G.handCount[p] = handCount;                 // set the number of cards on hand
+        1:   67:	G.hand[p][0] = sea_hag;
+        -:   68:
+        -:   69:	//playCard(0, 0, 0, 0, &G);
+        -:   70:	
+        -:   71:#if (NOISY_TEST == 1)
+        1:   72:	printf("Oppenents top card should be a curse. Test starts in initial game state so player's top of deck should not.\n");
+call    0 returned 100%
+        1:   73:	printf("Oponents top of deck is curse = %d, expected = 1\n", opponentTopOfDeck);
+call    0 returned 100%
+        1:   74:	printf("Players top of deck is not curse = %d, expected = 0\n", playerTopOfDeck);
+call    0 returned 100%
+        -:   75:#endif
+        -:   76:	
+        1:   77:    printf("All tests passed!\n");
+call    0 returned 100%
+        -:   78:	
+        1:   79:    return 0;
+        -:   80:}
